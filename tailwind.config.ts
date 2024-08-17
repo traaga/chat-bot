@@ -1,20 +1,28 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
-    },
-  },
-  plugins: [],
+	content: [
+		"./src/**/*.{js,ts,jsx,tsx,mdx}",
+	],
+	theme: {
+		extend: {
+			borderRadius: {
+				"4xl": "2.5rem",
+			},
+			width: {
+				// 100% - button width - gap
+				"textarea": "calc(100% - 36px - 16px)",
+			},
+		},
+		colors: {
+			primary: "#EEB5EB",
+			secondary: "#C26DBC",
+			background: "whitesmoke",
+			foreground: "white",
+			primarytext: "#616161",
+			disabled: "#dddddd",
+		},
+	},
+	plugins: [require("tailwindcss-animate")],
 };
 export default config;
