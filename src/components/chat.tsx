@@ -24,14 +24,17 @@ export default function Chat() {
 	}
 
 	const handleOnKeyDown = (key: any) => {
+		// ENTER and (SHIFT or ISLOADING)
 		if (key.keyCode === 13 && (key.shiftKey || isLoading)) {
 			if (textAreaRows < 19) {
 				setTextAreaRows(textAreaRows + 1);
 			}
+		// BACKSPACE and SHIFT
 		} else if (key.keyCode === 8 && key.shiftKey) {
 			if (textAreaRows > 1) {
 				setTextAreaRows(textAreaRows - 1);
 			}
+		// ENTER
 		} else if (key.keyCode == 13) {
 			const el = document.querySelector("#chat-button") as HTMLButtonElement;
 			key.preventDefault();
