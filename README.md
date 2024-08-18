@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Vestlusrobot Next.js'ga
 
-## Getting Started
+Lihtne vestlusroboti kasutajaliides (Next.js tehnoloogiaga), mis kasutab Vercel AI SDK'd ning OpenAI API't. Rakenduse eesmärk on võimaldada kasutajatel vestelda AI-ga, esitades küsimusi ja saades vastuseid. 
 
-First, run the development server:
+![What is this](screenshot.PNG)
+
+## Rakenduse käivitamine arenduseks:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Rakendusele on võimalik ligipääseda veebibrauserilt sellelt lingilt: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Koodi struktuur
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Kasutasin `app` kausta `Next.js`-i rakenduse põhistruktuurina, mis on ka `Vercel`-i poolt soovitatud, kuna see võimaldab selgelt eristada lehekülgi ja `API` päringuid. Iga `UI` komponent on omas failis `components` kaustas, mis muudab nende arendamise ja testimise lihtsamaks, kuna komponendi loogika ja stiilid on eraldatud muust koodist. See koodistruktuur aitab hoida projekti skaleeritavana, võimaldades vajadusel komponente hõlpsasti muuta või uuesti kasutada, ilma et see mõjutaks ülejäänud koodi.
 
-## Learn More
+Kuna tegemist on väikese projektiga, on oluline hoida koodistruktuur võimalikult lihtsana. Liigne kaustade jaotus võib segadust tekitada ja muuta projekti raskemini hallatavaks.
 
-To learn more about Next.js, take a look at the following resources:
+## Kasutajasõbralikkus
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Kasutajaliidese inspiratsioon on võetud `OpenAI` `ChatGPT` lahendusest, mis on tuntud oma intuitiivsuse ja lihtsa kasutuskogemuse poolest. Rakenduses on oluline, et kasutaja saaks vestlusrobotiga suhelda võimalikult mugavalt seega mõistlik on kasutada juba olemasolevaid ja tuttavaid lahendusi. Tekstiala (textarea) suuruse dünaamiline muutmine (Shift+Enter suurendab ja Shift+Backspace vähendab) aitab kasutajal hõlpsasti kirjutada ja redigeerida pikemaid sõnumeid ilma ekraaniruumi raiskamata. 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Värviskeem ja tüpograafia
 
-## Deploy on Vercel
+Valitud värviskeem on lihtne, kuid tõhus – see koosneb `lillast` ja `valgest`. Lilla värv sümboliseerib loovust ja innovatsiooni, mis seostub hästi vestlusroboti AI teemaga. Valge taust loob selge ja puhta välimuse, mis aitab kasutajatel keskenduda vestlusele ilma liigsete segajateta.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Valitud tüpograafia on lihtne ja kaasaegne, keskendudes loetavusele. Kasutatud font `Manrope` on `sans-serif` stiilis, mis on optimeeritud erinevate seadmete ja ekraanisuuruste jaoks. Suur rõhk on pandud kontrastile ja tähemärkide selgusele, et tekst oleks hästi loetav ka väiksemates seadmetes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Disaini lähenemine 
+
+`Tailwind CSS`-i valik võimaldab kiiret ja tõhusat prototüüpimist, mis on oluline väikeste projektide puhul, kus aeg on piiratud. `Tailwind` võimaldab kasutada eelloodud klasse, mis vähendavad vajadust luua keerulisi kohandatud CSS-klasse, samas tagades järjepideva ja hästi struktureeritud stiilide rakendamise kogu rakenduses. Kuigi `Tailwind` võib pikemas perspektiivis muuta `HTML`-i vähem loetavaks, kaalub selle pakutav paindlikkus ja kiirus selle puuduse üles.
+
+## Testimine
+
+Testimise jaoks kasutaksin `Jest` ja `Cypress` raamistikke, et tagada rakenduse töökindlust ja stabiilsust. `Jest`-i kasutamine võimaldab kirjutada `unit test`-e, mis kontrollivad väikseid koodiosasid, nagu üksikud funktsioonid ja komponendid. `Cypress`-i kasutamine on suurepärane valik funktsionaalsete ja kasutajaliidese testide jaoks, kuna see võimaldab simuleerida kasutaja tegevusi ja testida kogu kasutajavoogu.
+
+## Ohud ja riskid
+
+`Cross-Site Scripting (XSS)` rünnakud on tavalised veebirakendustes, kus kasutajad saavad sisestada andmeid. Selle riski maandamiseks on oluline, et kõik kasutaja sisestused puhastatakse ja valideeritakse enne nende kuvamist või töötlemist. Kasutades turvameetmeid, nagu sisu turvapoliitika (`Content Security Policy, CSP`), saab piirata kolmandate osapoolte skriptide täitmist, mis vähendab rünnakute riski.
+
+`API`-de kasutamisel tuleb arvestada ka võimalike tõrgetega, nagu võrguühenduse vead või päringute limiidid. Selleks luuakse rakendustele veahaldus, mis kuvab kasutajale selgeid ja sõbralikke veateateid, kui midagi valesti läheb.
+
+## Optimeerimine
+
+Rakenduse jõudluse optimeerimiseks ja kasutajakogemuse parandamiseks kasutasin `@vercel/speed-insights` tööriista. See tööriist pakub väärtuslikku teavet lehekülje laadimisaja kohta ja annab soovitusi, kuidas seda veelgi vähendada. Kiire lehe laadimisaeg on kriitiline, et hoida kasutajaid kaasatuna ja vältida kõrget loobumismäära.

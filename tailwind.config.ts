@@ -23,6 +23,5 @@ const config: Config = {
 			disabled: "#dddddd",
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
 };
 export default config;
